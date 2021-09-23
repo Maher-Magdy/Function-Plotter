@@ -15,6 +15,13 @@ public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
 
+private slots:
+    void on_actionExit_triggered();
+    void my_plot_function(double min , double max);
+    void process_entered_function();
+
+    void on_pushButton_clicked();
+
 private:
     Ui::MainWindow *ui;
 };
