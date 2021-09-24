@@ -10,7 +10,8 @@ CONFIG += c++11
 
 SOURCES += \
     main.cpp \
-    mainwindow.cpp
+    mainwindow.cpp \
+    qcustomplot.cpp
 
 HEADERS += \
     mainwindow.h \
@@ -23,25 +24,3 @@ FORMS += \
 qnx: target.path = /tmp/$${TARGET}/bin
 else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
-
-# Tell the qcustomplot header that it will be used as library:
-DEFINES += QCUSTOMPLOT_USE_LIBRARY
-
-# Link with debug version of qcustomplot if compiling in debug mode, else with release library:
-CONFIG(debug, release|debug) {
-  win32:QCPLIB = qcustomplotd2
-  else: QCPLIB = qcustomplotd
-} else {
-  win32:QCPLIB = qcustomplot2
-  else: QCPLIB = qcustomplot
-}
-LIBS += -L./ -l$$QCPLIB
-
-
-
-
-win32:CONFIG(release, debug|release): LIBS += -L$$PWD/./ -lqcustomplot2
-else:win32:CONFIG(debug, debug|release): LIBS += -L$$PWD/./ -lqcustomplotd2
-
-INCLUDEPATH += $$PWD/.
-DEPENDPATH += $$PWD/.
