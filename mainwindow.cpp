@@ -219,3 +219,9 @@ void MainWindow::on_pushButton_clicked()
     my_plot_function(ui->doubleSpinBox->value(),ui->doubleSpinBox_2->value(),10000,function);
 }
 
+
+void MainWindow::on_actionSave_triggered()
+{
+    ui->widget->grab().save("graph.png");
+}
+
