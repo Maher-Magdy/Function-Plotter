@@ -62,7 +62,7 @@ public:
     {
         if (MainWindow->objectName().isEmpty())
             MainWindow->setObjectName(QString::fromUtf8("MainWindow"));
-        MainWindow->resize(988, 432);
+        MainWindow->resize(935, 443);
         QFont font;
         font.setFamilies({QString::fromUtf8("MS Shell Dlg 2")});
         font.setPointSize(12);
@@ -83,17 +83,17 @@ public:
         centralwidget->setObjectName(QString::fromUtf8("centralwidget"));
         widget = new QCustomPlot(centralwidget);
         widget->setObjectName(QString::fromUtf8("widget"));
-        widget->setGeometry(QRect(370, 10, 581, 261));
+        widget->setGeometry(QRect(380, 20, 480, 320));
         widget->setStyleSheet(QString::fromUtf8("background-color: rgb(22, 22, 24);\n"
 "font: 8pt \"Myanmar Text\";\n"
 "font: 12pt \"MS Shell Dlg 2\";\n"
 "color: rgb(255, 255, 255);"));
         label_4 = new QLabel(centralwidget);
         label_4->setObjectName(QString::fromUtf8("label_4"));
-        label_4->setGeometry(QRect(50, 140, 140, 19));
+        label_4->setGeometry(QRect(70, 140, 140, 19));
         layoutWidget = new QWidget(centralwidget);
         layoutWidget->setObjectName(QString::fromUtf8("layoutWidget"));
-        layoutWidget->setGeometry(QRect(19, 170, 330, 101));
+        layoutWidget->setGeometry(QRect(19, 170, 330, 121));
         verticalLayout_3 = new QVBoxLayout(layoutWidget);
         verticalLayout_3->setObjectName(QString::fromUtf8("verticalLayout_3"));
         verticalLayout_3->setContentsMargins(0, 0, 0, 0);
@@ -144,7 +144,7 @@ public:
 
         layoutWidget1 = new QWidget(centralwidget);
         layoutWidget1->setObjectName(QString::fromUtf8("layoutWidget1"));
-        layoutWidget1->setGeometry(QRect(24, 50, 281, 56));
+        layoutWidget1->setGeometry(QRect(24, 50, 321, 61));
         verticalLayout_4 = new QVBoxLayout(layoutWidget1);
         verticalLayout_4->setObjectName(QString::fromUtf8("verticalLayout_4"));
         verticalLayout_4->setContentsMargins(0, 0, 0, 0);
@@ -172,7 +172,7 @@ public:
         MainWindow->setCentralWidget(centralwidget);
         menubar = new QMenuBar(MainWindow);
         menubar->setObjectName(QString::fromUtf8("menubar"));
-        menubar->setGeometry(QRect(0, 0, 988, 24));
+        menubar->setGeometry(QRect(0, 0, 935, 24));
         menuFile = new QMenu(menubar);
         menuFile->setObjectName(QString::fromUtf8("menuFile"));
         menuOptions = new QMenu(menubar);
