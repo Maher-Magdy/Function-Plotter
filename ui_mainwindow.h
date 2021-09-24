@@ -12,7 +12,7 @@
 #include <QtCore/QVariant>
 #include <QtGui/QAction>
 #include <QtWidgets/QApplication>
-#include <QtWidgets/QDial>
+#include <QtWidgets/QDoubleSpinBox>
 #include <QtWidgets/QHBoxLayout>
 #include <QtWidgets/QLabel>
 #include <QtWidgets/QLineEdit>
@@ -20,7 +20,6 @@
 #include <QtWidgets/QMenu>
 #include <QtWidgets/QMenuBar>
 #include <QtWidgets/QPushButton>
-#include <QtWidgets/QSpinBox>
 #include <QtWidgets/QStatusBar>
 #include <QtWidgets/QToolBar>
 #include <QtWidgets/QVBoxLayout>
@@ -33,21 +32,21 @@ class Ui_MainWindow
 {
 public:
     QAction *actionExit;
+    QAction *actionSave;
     QWidget *centralwidget;
     QCustomPlot *widget;
     QLabel *label_4;
-    QWidget *widget1;
+    QWidget *layoutWidget;
     QVBoxLayout *verticalLayout_3;
     QHBoxLayout *horizontalLayout;
     QVBoxLayout *verticalLayout_2;
     QLabel *label_2;
-    QSpinBox *spinBox;
+    QDoubleSpinBox *doubleSpinBox;
     QVBoxLayout *verticalLayout;
     QLabel *label_3;
-    QSpinBox *spinBox_2;
-    QDial *dial;
+    QDoubleSpinBox *doubleSpinBox_2;
     QPushButton *pushButton;
-    QWidget *widget2;
+    QWidget *layoutWidget1;
     QVBoxLayout *verticalLayout_4;
     QLabel *label;
     QHBoxLayout *horizontalLayout_2;
@@ -71,8 +70,6 @@ public:
         font.setItalic(false);
         MainWindow->setFont(font);
         MainWindow->setStyleSheet(QString::fromUtf8("background-color: rgb(22, 22, 24);\n"
-"background-image: url(:/new/prefix1/218842499_941121483121485_8995736322306684890_n.png);\n"
-"\n"
 "selection-color: rgb(76, 145, 255);\n"
 "font: 8pt \"Myanmar Text\";\n"
 "font: 12pt \"MS Shell Dlg 2\";\n"
@@ -80,90 +77,90 @@ public:
 ""));
         actionExit = new QAction(MainWindow);
         actionExit->setObjectName(QString::fromUtf8("actionExit"));
+        actionSave = new QAction(MainWindow);
+        actionSave->setObjectName(QString::fromUtf8("actionSave"));
         centralwidget = new QWidget(MainWindow);
         centralwidget->setObjectName(QString::fromUtf8("centralwidget"));
         widget = new QCustomPlot(centralwidget);
         widget->setObjectName(QString::fromUtf8("widget"));
-        widget->setGeometry(QRect(340, 10, 611, 271));
+        widget->setGeometry(QRect(370, 10, 581, 261));
+        widget->setStyleSheet(QString::fromUtf8("background-color: rgb(22, 22, 24);\n"
+"font: 8pt \"Myanmar Text\";\n"
+"font: 12pt \"MS Shell Dlg 2\";\n"
+"color: rgb(255, 255, 255);"));
         label_4 = new QLabel(centralwidget);
         label_4->setObjectName(QString::fromUtf8("label_4"));
-        label_4->setGeometry(QRect(50, 100, 140, 19));
-        widget1 = new QWidget(centralwidget);
-        widget1->setObjectName(QString::fromUtf8("widget1"));
-        widget1->setGeometry(QRect(19, 130, 284, 101));
-        verticalLayout_3 = new QVBoxLayout(widget1);
+        label_4->setGeometry(QRect(50, 140, 140, 19));
+        layoutWidget = new QWidget(centralwidget);
+        layoutWidget->setObjectName(QString::fromUtf8("layoutWidget"));
+        layoutWidget->setGeometry(QRect(19, 170, 330, 101));
+        verticalLayout_3 = new QVBoxLayout(layoutWidget);
         verticalLayout_3->setObjectName(QString::fromUtf8("verticalLayout_3"));
         verticalLayout_3->setContentsMargins(0, 0, 0, 0);
         horizontalLayout = new QHBoxLayout();
         horizontalLayout->setObjectName(QString::fromUtf8("horizontalLayout"));
         verticalLayout_2 = new QVBoxLayout();
         verticalLayout_2->setObjectName(QString::fromUtf8("verticalLayout_2"));
-        label_2 = new QLabel(widget1);
+        label_2 = new QLabel(layoutWidget);
         label_2->setObjectName(QString::fromUtf8("label_2"));
 
         verticalLayout_2->addWidget(label_2);
 
-        spinBox = new QSpinBox(widget1);
-        spinBox->setObjectName(QString::fromUtf8("spinBox"));
-        spinBox->setMinimum(-10000000);
-        spinBox->setMaximum(10000000);
+        doubleSpinBox = new QDoubleSpinBox(layoutWidget);
+        doubleSpinBox->setObjectName(QString::fromUtf8("doubleSpinBox"));
+        doubleSpinBox->setMinimum(-10000000.000000000000000);
+        doubleSpinBox->setMaximum(10000000.000000000000000);
 
-        verticalLayout_2->addWidget(spinBox);
+        verticalLayout_2->addWidget(doubleSpinBox);
 
 
         horizontalLayout->addLayout(verticalLayout_2);
 
         verticalLayout = new QVBoxLayout();
         verticalLayout->setObjectName(QString::fromUtf8("verticalLayout"));
-        label_3 = new QLabel(widget1);
+        label_3 = new QLabel(layoutWidget);
         label_3->setObjectName(QString::fromUtf8("label_3"));
 
         verticalLayout->addWidget(label_3);
 
-        spinBox_2 = new QSpinBox(widget1);
-        spinBox_2->setObjectName(QString::fromUtf8("spinBox_2"));
-        spinBox_2->setMinimum(-10000000);
-        spinBox_2->setMaximum(10000000);
+        doubleSpinBox_2 = new QDoubleSpinBox(layoutWidget);
+        doubleSpinBox_2->setObjectName(QString::fromUtf8("doubleSpinBox_2"));
+        doubleSpinBox_2->setMinimum(-10000000.000000000000000);
+        doubleSpinBox_2->setMaximum(10000000.000000000000000);
 
-        verticalLayout->addWidget(spinBox_2);
+        verticalLayout->addWidget(doubleSpinBox_2);
 
 
         horizontalLayout->addLayout(verticalLayout);
 
-        dial = new QDial(widget1);
-        dial->setObjectName(QString::fromUtf8("dial"));
-        dial->setStyleSheet(QString::fromUtf8("background-color: rgb(22, 22, 24);"));
-
-        horizontalLayout->addWidget(dial);
-
 
         verticalLayout_3->addLayout(horizontalLayout);
 
-        pushButton = new QPushButton(widget1);
+        pushButton = new QPushButton(layoutWidget);
         pushButton->setObjectName(QString::fromUtf8("pushButton"));
         pushButton->setStyleSheet(QString::fromUtf8("background-color: rgb(22, 22, 24);"));
 
         verticalLayout_3->addWidget(pushButton);
 
-        widget2 = new QWidget(centralwidget);
-        widget2->setObjectName(QString::fromUtf8("widget2"));
-        widget2->setGeometry(QRect(24, 24, 281, 56));
-        verticalLayout_4 = new QVBoxLayout(widget2);
+        layoutWidget1 = new QWidget(centralwidget);
+        layoutWidget1->setObjectName(QString::fromUtf8("layoutWidget1"));
+        layoutWidget1->setGeometry(QRect(24, 50, 281, 56));
+        verticalLayout_4 = new QVBoxLayout(layoutWidget1);
         verticalLayout_4->setObjectName(QString::fromUtf8("verticalLayout_4"));
         verticalLayout_4->setContentsMargins(0, 0, 0, 0);
-        label = new QLabel(widget2);
+        label = new QLabel(layoutWidget1);
         label->setObjectName(QString::fromUtf8("label"));
 
         verticalLayout_4->addWidget(label);
 
         horizontalLayout_2 = new QHBoxLayout();
         horizontalLayout_2->setObjectName(QString::fromUtf8("horizontalLayout_2"));
-        label_5 = new QLabel(widget2);
+        label_5 = new QLabel(layoutWidget1);
         label_5->setObjectName(QString::fromUtf8("label_5"));
 
         horizontalLayout_2->addWidget(label_5);
 
-        lineEdit = new QLineEdit(widget2);
+        lineEdit = new QLineEdit(layoutWidget1);
         lineEdit->setObjectName(QString::fromUtf8("lineEdit"));
         lineEdit->setFont(font);
 
@@ -190,6 +187,7 @@ public:
 
         menubar->addAction(menuFile->menuAction());
         menubar->addAction(menuOptions->menuAction());
+        menuFile->addAction(actionSave);
         menuFile->addAction(actionExit);
 
         retranslateUi(MainWindow);
@@ -201,6 +199,7 @@ public:
     {
         MainWindow->setWindowTitle(QCoreApplication::translate("MainWindow", "MainWindow", nullptr));
         actionExit->setText(QCoreApplication::translate("MainWindow", "Exit", nullptr));
+        actionSave->setText(QCoreApplication::translate("MainWindow", "Save", nullptr));
         label_4->setText(QCoreApplication::translate("MainWindow", "                 Range :", nullptr));
         label_2->setText(QCoreApplication::translate("MainWindow", "Min value", nullptr));
         label_3->setText(QCoreApplication::translate("MainWindow", "Max value", nullptr));
