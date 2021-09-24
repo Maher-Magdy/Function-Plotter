@@ -1,10 +1,5 @@
 # import math
 # import os
-import win32gui
-import win32.lib.win32con as win32con
-
-the_program_to_hide = win32gui.GetForegroundWindow()
-win32gui.ShowWindow(the_program_to_hide , win32con.SW_HIDE)
 
 
 def write_text(text,file_name):
