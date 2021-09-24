@@ -17,8 +17,8 @@ public:
 
 private slots:
     void on_actionExit_triggered();
-    void my_plot_function(double min , double max,int no_of_points);
-    void process_entered_function();
+    void my_plot_function(double min , double max,int no_of_points,QString function);
+    QString process_entered_function();
 
     void on_pushButton_clicked();
 

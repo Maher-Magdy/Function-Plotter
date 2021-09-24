@@ -36,16 +36,90 @@ void MainWindow::on_actionExit_triggered()
     QApplication::quit();
 }
 
-void MainWindow::my_plot_function(double min , double max, int no_of_points)
+//file functions
+
+void write(QString filePath,QString text)
+{
+    QFile file(filePath);
+    //if can't open the file
+    if(!file.open(QFile::WriteOnly|QFile::Text))
+    {return;}
+    //writing process
+    QTextStream out(&file);
+    out<<text;
+    file.flush();
+    file.close();
+
+}
+
+
+QString read(QString filePath)
+{
+    QFile file(filePath);
+    //if can't open the file
+    if(!file.open(QFile::ReadOnly|QFile::Text))
+    {return "error ! can't open evaluator_out file";}
+    //writing process
+    QTextStream in(&file);
+    QString text =in.readAll();
+    file.close();
+    return text;
+
+}
+
+
+
+
+void MainWindow::my_plot_function(double min , double max, int no_of_points, QString function)
 {
 
     // generate some data:
-    QVector<double> x(no_of_points), y(no_of_points); // initialize with entries 0..100
+    QVector<double> x(no_of_points), y(no_of_points);
+    QString points_after_sub_in_func="";
+    QString function_after_sub=function;
+
+    //this code calculates every point
     for (int i=0; i<no_of_points; ++i)
     {
       x[i] = min +i*(max-min)/no_of_points+0.000001;  // to avoid division by zero error
-      y[i] = x[i]*x[i]; //
+
+      //replace every x with point x[i]
+
+      function_after_sub.replace(QString("x"),("("+QString::number(x[i])+")"));
+      function_after_sub.replace(QString("X"),("("+QString::number(x[i])+")"));
+
+       points_after_sub_in_func+=function_after_sub+"\n";
+       //reset function_after_sub
+       function_after_sub=function;
+
+
     }
+
+    //write for evaluator
+    write("evaluator.txt",points_after_sub_in_func);
+
+    //call evaluator
+    QProcess process;
+
+    process.start("evaluator.exe");
+
+
+    //wait for the evaluator outout
+    Sleep(500);
+    //read the evaluator outout
+    QFile file("evaluator_out.txt");
+    //if can't open the file
+    if(!file.open(QFile::ReadOnly|QFile::Text))   { QMessageBox::critical(this,"error !"," can't open evaluator_out file");}
+
+    QTextStream in(&file);
+    for (int i=0; i<no_of_points; ++i)
+    {
+    y[i] =in.readLine().toDouble();//get the result from the evaluator
+    }
+    file.close();
+
+
+
     // create graph and assign data to it:
     ui->widget->addGraph();
     ui->widget->graph(0)->setData(x, y);
@@ -67,19 +141,20 @@ void MainWindow::my_plot_function(double min , double max, int no_of_points)
 
     // set axes ranges
     //ui->widget->graph(0)->rescaleAxes();
-    ui->widget->xAxis->setRange(min, max);
-    ui->widget->yAxis->setRange(min*1.5, max*1.5); // the range ratio should be the same as the widget aspect ratio
+    ui->widget->xAxis->setRange(min*1.2, max*1.2);
+    ui->widget->yAxis->setRange(min*1.5*1.2, max*1.5*1.2); // the range ratio should be the same as the widget aspect ratio
     // Allow user to drag axis ranges with mouse, zoom with mouse wheel and select graphs by clicking
     ui->widget->setInteractions(QCP::iRangeDrag | QCP::iRangeZoom | QCP::iSelectPlottables);
 
     ui->widget->replot();
 }
 
-void MainWindow::process_entered_function()
+QString MainWindow::process_entered_function()
 {
     //check the enetered text
     QString allowed_char="0123456789 xX+-*/^.()";
     bool unallowed_char_flag=0;
+    QString function= ui->lineEdit->text();
 
     //using regular expression
     QRegularExpression re;
@@ -109,13 +184,16 @@ void MainWindow::process_entered_function()
         {
 
             QMessageBox::critical(this,"Error ! "," only x ,parentheses , numbers and +-*/^  operators are allowed in F(x)");
-            break;
+            return "error";
         }
 
     }
+    //replace ^ with ** for evaluator
+
+    function.replace("^","**");
 
 
-
+    return function;
 
 
 }
@@ -124,7 +202,9 @@ void MainWindow::on_pushButton_clicked()
 {
 
     //process the eneterd function text
-    process_entered_function();
+    QString function=process_entered_function();
+
+    if(function=="error") {return;}
 
 
     //make sure max> min
@@ -135,7 +215,7 @@ void MainWindow::on_pushButton_clicked()
     }
     //show the plot widget
     ui->widget->setVisible(true);
-    //draw the function
-    my_plot_function(ui->doubleSpinBox->value(),ui->doubleSpinBox_2->value(),10000);
+    //draw the math function
+    my_plot_function(ui->doubleSpinBox->value(),ui->doubleSpinBox_2->value(),10000,function);
 }
 

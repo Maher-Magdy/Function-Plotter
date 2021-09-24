@@ -33,3 +33,6 @@
 # folders
 debug
 qtcustomplot
+dist
+build
+__pycache__
