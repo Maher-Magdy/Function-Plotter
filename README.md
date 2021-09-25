@@ -13,6 +13,6 @@ All needed DLLs are included in the "required dll" directory ; please place all 
 Demo video :
 the following video shows the working GUI with multiple examples:
 
-https://drive.google.com/file/d/1F2oPlgTK_uKnCtH-WsaKidhMyUKm1nLU/view?usp=sharing
+https://drive.google.com/file/d/1OTysuN9pHUkzEExLWbLauiy1j0vjweto/view?usp=sharing
 
 Finally,the project may be added upon to support more functions e.g. : trigonometric functions as future work.
