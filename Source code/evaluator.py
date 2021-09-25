@@ -23,3 +23,4 @@ def read_text(file_name):
 
 result=read_text("evaluator.txt")
 write_text(result,"evaluator_out.txt")
+write_text("done","evaluator.txt")
