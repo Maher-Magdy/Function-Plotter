@@ -112,12 +112,26 @@ void MainWindow::my_plot_function(double min , double max, int no_of_points, QSt
 
     //call evaluator
     QProcess process;
-
     process.start("evaluator.exe");
 
-
     //wait for the evaluator outout
-    Sleep(500);
+    //Sleep(500);
+
+    while(true)
+    {
+        Sleep(25);
+        try
+        {
+            QString ready = read("evaluator.txt");
+            if (ready=="done"){break;}
+
+        }  catch (int error)
+        {
+            ;
+        }
+
+    }
+
     //read the evaluator outout
     QFile file("evaluator_out.txt");
     //if can't open the file
