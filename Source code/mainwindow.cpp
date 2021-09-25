@@ -33,6 +33,18 @@ MainWindow::~MainWindow()
 
 void MainWindow::on_actionExit_triggered()
 {
+    try
+    {
+        QFile evaluator ("evaluator.txt");
+        evaluator.remove();
+        QFile evaluator_out ("evaluator_out.txt");
+        evaluator_out.remove();
+
+    }  catch (int error)
+    {
+
+    }
+
     QApplication::quit();
 }
 
